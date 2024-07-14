@@ -1,0 +1,19 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>My Appointments</h1>
+
+			<% @appointments.each do |appointment| %>
+				<div>
+					<% if appointment.client.nil? %>
+						<%= "Open slot w/ #{appointment.coach.name}" %>
+					<% elsif appointment.note.nil? %>
+						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
+					<% else %>
+						<%= "Completed Coaching session between Coach #{appointment.coach.name} and #{appointment.client.name}" %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
