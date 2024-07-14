@@ -1,9 +1,13 @@
 <div class="container">
 	<div class="row">
+		<%= "User: #{@user.name}" %>
+	</div>
+	<div class="row">
 		<div class="col">
 			<h1>My Appointments</h1>
 
 			<% @appointments.each do |appointment| %>
+				<label><%= appointment.start %></label>
 				<div>
 					<% if appointment.client.nil? %>
 						<%= "Open slot w/ #{appointment.coach.name}" %>
@@ -11,8 +15,24 @@
 						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
 					<% else %>
 						<%= "Completed Coaching session between Coach #{appointment.coach.name} and #{appointment.client.name}" %>
+
 					<% end %>
 				</div>
+			<% end %>
+		</div>
+		<div class="col">
+			<% if @user.isCoach %>
+				<h2>Create New Session Slot</h2>
+
+			<% else %>
+				<h2>Book a Session</h2>
+				<% @available_sessions.each do |appt| %>
+					<div>
+						<b><%= appt.start %></b>
+						<%= appt.coach.name %>
+						<%= button_to "Book", {:controller => "application", :action => "book", :user_id => @user.id, :appt_id => appt.id }, :method => :post %>
+					</div>
+				<% end %>
 			<% end %>
 		</div>
 	</div>

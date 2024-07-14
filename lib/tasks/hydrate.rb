@@ -1,5 +1,5 @@
 emongg = User.new( name: "Emongg", phone: "(123)123-1234", isCoach: false )
-flats = User.new( name: "Flat", phone: "(222)222-2222", isCoach: false )
+flats = User.new( name: "Flats", phone: "(222)222-2222", isCoach: false )
 karq = User.new( name: "KarQ", phone: "(333)333-3333", isCoach: true )
 spilo = User.new( name: "Spilo", phone: "(444)444-4444", isCoach: true )
 

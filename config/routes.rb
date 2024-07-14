@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "/view/:userId", to: "application#index"
+
+  post "/book/:appt_id/:user_id", to: "application#book"
 end
