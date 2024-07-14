@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<%= form_for @new_note, url: { controller: "application", action: "completeSubmission" } do |f| %>
+				<label>Note</label>
+				<%= f.text_field :note %>
+				<label>Rating</label>
+				<%= f.number_field :rating %>
+				<%= f.hidden_field :appointment_id %>
+				<%= f.submit "Complete", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>

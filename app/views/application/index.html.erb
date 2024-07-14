@@ -14,9 +14,8 @@
 					<% elsif appointment.note.nil? %>
 						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
 						
-						<!--Coach opens complete modal-->
 						<% if appointment.coach == @user %>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#completeModal">Complete</button>
+							<%= button_to "Complete", {:controller => "application", :action => "complete", :appt_id => appointment.id }, :method => :get %>
 						<% end %>
 
 					<% else %>

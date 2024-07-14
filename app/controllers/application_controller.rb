@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
 		@available_sessions = Appointment.where(client: nil)
 
 		@new_appointment = Appointment.new(coach: @user)
-
-		@new_note = Note.new
 	end
 
 	def create
@@ -53,6 +51,21 @@ class ApplicationController < ActionController::Base
 	end
 
 	def complete
+		appt_id = params[:appt_id]
+		@new_note = Note.new(appointment_id: appt_id)
+	end
 
+	def completeSubmission
+		note_hash = params[:note]
+
+		appointment = Appointment.find(note_hash[:appointment_id])
+		note = Note.new( rating: note_hash[:rating], note: note_hash[:note], appointment: appointment )
+		note.save!
+
+		# TODO: validation
+		# rating between 1 & 5
+		# appointment does not already have a note
+
+		redirect_to "/view/#{appointment.coach_id}"
 	end
 end

@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   post "/create", to: "application#create"
   post "/book/:appt_id/:user_id", to: "application#book"
-  post "/complete", to: "application#complete"
+  get "/complete/:appt_id", to: "application#complete"
+  post "/complete", to: "application#completeSubmission"
 end
