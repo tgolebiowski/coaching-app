@@ -1,25 +1,46 @@
 <div class="container">
-	<div class="row">
-		<%= "User: #{@user.name}" %>
-	</div>
+	<header>
+		<h1><%= "#{@user.isCoach ? "Coach" : "User"}-#{@user.name}" %></h1>
+	</header>
 	<div class="row">
 		<div class="col">
-			<h1>My Appointments</h1>
+			<h2>My Appointments</h2>
 
 			<% @appointments.each do |appointment| %>
-				<label><%= appointment.start %></label>
-				<div>
+				<div class="card">
+					<label><%= appointment.start %></label>
+
 					<% if appointment.client.nil? %>
 						<%= "Open slot w/ #{appointment.coach.name}" %>
 					<% elsif appointment.note.nil? %>
 						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
-						
+
 						<% if appointment.coach == @user %>
 							<%= button_to "Complete", {:controller => "application", :action => "complete", :appt_id => appointment.id }, :method => :get %>
 						<% end %>
 
+						<% if appointment.coach == @user %>
+						<label><%= "#{appointment.client.name} Phone: #{appointment.client.phone}" %></label>
+						<% end %>
+						<% if appointment.client == @user %>
+						<label><%= "#{appointment.coach.name} Phone: #{appointment.coach.phone}" %></label>
+						<% end %>
+
 					<% else %>
-						<%= "Completed Coaching session between Coach #{appointment.coach.name} and #{appointment.client.name}" %>
+						<div>
+						<p><%= "Completed Coaching session between Coach #{appointment.coach.name} and #{appointment.client.name}" %></p>
+						<p><%= "Note: #{appointment.note.note}" %></p>
+						<p><%= "Rating: #{appointment.note.rating}" %></p>
+
+						<!-- C+P from above, yuck, but i'm running low on time-->
+						<% if appointment.coach == @user %>
+						<label><%= "#{appointment.client.name} Phone: #{appointment.client.phone}" %></label>
+						<% end %>
+						<% if appointment.client == @user %>
+						<label><%= "#{appointment.coach.name} Phone: #{appointment.coach.phone}" %></label>
+						<% end %>
+
+						</div>
 					<% end %>
 				</div>
 			<% end %>
@@ -45,11 +66,3 @@
 		</div>
 	</div>
 </div>
-<!-- Modal Attempt 
-<%# <div class="modal fade" id="completeModal" tabindex="-1" role="dialog" aria-labelledby="completeModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-	    <div class="modal-content">
-
-	    </div>
-	</div>
-</div> %> -->
