@@ -13,6 +13,12 @@
 						<%= "Open slot w/ #{appointment.coach.name}" %>
 					<% elsif appointment.note.nil? %>
 						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
+						
+						<!--Coach opens complete modal-->
+						<% if appointment.coach == @user %>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#completeModal">Complete</button>
+						<% end %>
+
 					<% else %>
 						<%= "Completed Coaching session between Coach #{appointment.coach.name} and #{appointment.client.name}" %>
 					<% end %>
@@ -40,3 +46,11 @@
 		</div>
 	</div>
 </div>
+<!-- Modal Attempt 
+<%# <div class="modal fade" id="completeModal" tabindex="-1" role="dialog" aria-labelledby="completeModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+
+	    </div>
+	</div>
+</div> %> -->

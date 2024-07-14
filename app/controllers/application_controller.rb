@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
 		@available_sessions = Appointment.where(client: nil)
 
 		@new_appointment = Appointment.new(coach: @user)
+
+		@new_note = Note.new
 	end
 
 	def create
@@ -48,5 +50,9 @@ class ApplicationController < ActionController::Base
 		appointment.save!
 
 		redirect_to "/view/#{user_booking_id}"
+	end
+
+	def complete
+
 	end
 end
