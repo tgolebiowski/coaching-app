@@ -3,7 +3,7 @@
 		<div class="col">
 			<%= form_for @new_note, url: { controller: "application", action: "completeSubmission" } do |f| %>
 				<label>Note</label>
-				<%= f.text_field :note %>
+				<%= f.text_area :note %>
 				<label>Rating</label>
 				<%= f.number_field :rating %>
 				<%= f.hidden_field :appointment_id %>

@@ -16,7 +16,7 @@
 						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
 
 						<% if appointment.coach == @user %>
-							<%= button_to "Complete", {:controller => "application", :action => "complete", :appt_id => appointment.id }, :method => :get %>
+							<%= button_to "Complete", {:controller => "application", :action => "complete", :appt_id => appointment.id }, :method => :get, class: "btn btn-primary" %>
 						<% end %>
 
 						<% if appointment.coach == @user %>
@@ -57,9 +57,10 @@
 				<h2>Book a Session</h2>
 				<% @available_sessions.each do |appt| %>
 					<div>
-						<b><%= appt.start %></b>
-						<%= appt.coach.name %>
-						<%= button_to "Book", {:controller => "application", :action => "book", :user_id => @user.id, :appt_id => appt.id }, :method => :post %>
+						<b><%= appt.coach.name %></b>
+
+						<%= appt.start %>
+						<%= button_to "Book", {:controller => "application", :action => "book", :user_id => @user.id, :appt_id => appt.id }, :method => :post, class: "btn btn-primary" %>
 					</div>
 				<% end %>
 			<% end %>
