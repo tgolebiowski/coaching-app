@@ -15,7 +15,6 @@
 						<%= "Booked Coaching session with Coach #{appointment.coach.name} and #{appointment.client.name}" %>
 					<% else %>
 						<%= "Completed Coaching session between Coach #{appointment.coach.name} and #{appointment.client.name}" %>
-
 					<% end %>
 				</div>
 			<% end %>
@@ -23,7 +22,11 @@
 		<div class="col">
 			<% if @user.isCoach %>
 				<h2>Create New Session Slot</h2>
-
+				<%= form_for @new_appointment, url: {controller: "application", action: "create" }, html: { class: 'input-group date' } do |f| %>
+					<%= f.datetime_field :start %>
+					<%= f.hidden_field :coach_id %>
+					<%= f.submit "Create", class: 'btn btn-primary' %>
+				<% end %>
 			<% else %>
 				<h2>Book a Session</h2>
 				<% @available_sessions.each do |appt| %>

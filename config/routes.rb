@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get "/view/:userId", to: "application#index"
 
   post "/book/:appt_id/:user_id", to: "application#book"
+  post "/create", to: "application#create"
 end
